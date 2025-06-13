@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQLiteDatabase Class Diagram with Code Examples</title>
+    
+    <!-- PrismJS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism-okaidia.min.css" rel="stylesheet" />
+    <!-- PrismJS Line Numbers -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.css" rel="stylesheet" />
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .diagram-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        
+        .class-node {
+            background-color: #4285f4;
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        
+        .methods-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .method-node {
+            background-color: #f1f1f1;
+            border-radius: 6px;
+            padding: 12px;
+            width: 280px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
+        }
+        
+        .method-node:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .method-name {
+            font-weight: bold;
+            color: #4285f4;
+            margin-bottom: 8px;
+            font-size: 16px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+        
+        .method-params {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .param-name {
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .param-type {
+            color: #888;
+            font-style: italic;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .search-container {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        #search {
+            padding: 8px 15px;
+            width: 60%;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            font-size: 16px;
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+        }
+        
+        .examples-container {
+            margin-top: 40px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        
+        .example-section {
+            background-color: #f9f9f9;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4285f4;
+        }
+        
+        .example-title {
+            font-weight: bold;
+            color: #4285f4;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .code-container {
+            position: relative;
+            margin: 10px 0;
+        }
+        
+        .code-header {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 5px 10px;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .copy-btn {
+            background: none;
+            border: none;
+            color: #f8f8f2;
+            cursor: pointer;
+            font-size: 12px;
+        }
+        
+        pre[class*="language-"] {
+            margin: 0;
+            border-radius: 0 0 4px 4px;
+        }
+        
+        .step {
+            margin-bottom: 15px;
+            padding-left: 15px;
+            border-left: 3px solid #ddd;
+        }
+        
+        .step-title {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .note {
+            background-color: #e7f4ff;
+            border-left: 4px solid #4285f4;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="diagram-container">
+        <h1>SQLiteDatabase Class Diagram with Code Examples</h1>
+        
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search methods...">
+        </div>
+        
+        <div class="class-node">SQLiteDatabase</div>
+        
+        <div class="methods-container" id="methods-container">
+            <!-- Methods will be inserted here by JavaScript -->
+        </div>
+        
+        <div class="examples-container">
+            <div class="example-section">
+                <div class="example-title">1. SQLiteOpenHelper Workflow</div>
+                
+                <div class="step">
+                    <div class="step-title">Step 1: Extend SQLiteOpenHelper</div>
+                    <p>Android provides SQLiteOpenHelper to manage database creation and version management.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>DatabaseHelper.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-java">// Database helper class
+public class DatabaseHelper extends SQLiteOpenHelper {
+    // Database info
+    private static final String DATABASE_NAME = "Users.db";
+    private static final int DATABASE_VERSION = 1;
+    
+    // Table info
+    public static final String TABLE_USERS = "users";
+    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_EMAIL = "email";
+    
+    // Constructor
+    public DatabaseHelper(Context context) {
+        // Calls super constructor with database name and version
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+}</code></pre>
+                    </div>
+                    <div class="note">
+                        <strong>Note:</strong> The constructor takes the application context, database name, 
+                        optional cursor factory, and database version.
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Step 2: Implement onCreate()</div>
+                    <p>Called when the database is created for the first time. Defines your initial tables.</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>DatabaseHelper.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-java">@Override
+public void onCreate(SQLiteDatabase db) {
+    // SQL to create users table
+    String CREATE_USERS_TABLE = "CREATE TABLE " + TABLE_USERS + "(" +
+            COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_NAME + " TEXT NOT NULL, " +
+            COLUMN_EMAIL + " TEXT NOT NULL UNIQUE" +
+            ")";
+    
+    // Execute the SQL
+    db.execSQL(CREATE_USERS_TABLE);
+    
+    // You can create multiple tables here
+    // db.execSQL(CREATE_ANOTHER_TABLE);
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Step 3: Implement onUpgrade()</div>
+                    <p>Called when the database needs to be upgraded (version number increased).</p>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>DatabaseHelper.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-java">@Override
+public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    // Drop older table if existed
+    db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
+    
+    // Create tables again
+    onCreate(db);
+    
+    // For more complex migrations, you can use switch statements
+    // to handle different version upgrades differently
+    // switch(oldVersion) {
+    //     case 1: upgradeFromV1ToV2(db);
+    //     case 2: upgradeFromV2ToV3(db);
+    // }
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <div class="example-title">2. CRUD Operations Examples</div>
+                
+                <div class="step">
+                    <div class="step-title">Insert User</div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>DatabaseHelper.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-java">// Method to add a new user
+public long addUser(User user) {
+    // Get writable database
+    SQLiteDatabase db = this.getWritableDatabase();
+    
+    // Create ContentValues to store key-value pairs
+    ContentValues values = new ContentValues();
+    values.put(COLUMN_NAME, user.getName());
+    values.put(COLUMN_EMAIL, user.getEmail());
+    
+    // Insert row
+    long id = db.insert(TABLE_USERS, null, values);
+    
+    // Close database connection
+    db.close();
+    
+    // Return newly inserted row id
+    return id;
+    
+    // Note: Returns -1 if insertion failed
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Get All Users</div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>DatabaseHelper.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-java">// Method to get all users
+public List&lt;User&gt; getAllUsers() {
+    List&lt;User&gt; users = new ArrayList&lt;&gt;();
+    
+    // Select All Query
+    String selectQuery = "SELECT * FROM " + TABLE_USERS;
+    
+    // Get readable database
+    SQLiteDatabase db = this.getReadableDatabase();
+    Cursor cursor = db.rawQuery(selectQuery, null);
+    
+    // Loop through all rows and add to list
+    if (cursor.moveToFirst()) {
+        do {
+            // Create new User object
+            User user = new User();
+            
+            // Set properties from cursor
+            user.setId(cursor.getInt(cursor.getColumnIndex(COLUMN_ID)));
+            user.setName(cursor.getString(cursor.getColumnIndex(COLUMN_NAME)));
+            user.setEmail(cursor.getString(cursor.getColumnIndex(COLUMN_EMAIL)));
+            
+            // Add user to list
+            users.add(user);
+        } while (cursor.moveToNext());
+    }
+    
+    // Close cursor and database
+    cursor.close();
+    db.close();
+    
+    return users;
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Update User</div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>DatabaseHelper.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-java">// Method to update a user
+public int updateUser(User user) {
+    // Get writable database
+    SQLiteDatabase db = this.getWritableDatabase();
+    
+    // Create ContentValues with new values
+    ContentValues values = new ContentValues();
+    values.put(COLUMN_NAME, user.getName());
+    values.put(COLUMN_EMAIL, user.getEmail());
+    
+    // Update row
+    // Returns number of rows affected
+    return db.update(TABLE_USERS, 
+            values, 
+            COLUMN_ID + " = ?",
+            new String[]{String.valueOf(user.getId())});
+    
+    // Note: Don't forget to close the database if you're not returning it
+    // db.close();
+}</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Delete User</div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>DatabaseHelper.java</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-java">// Method to delete a user
+public void deleteUser(long userId) {
+    // Get writable database
+    SQLiteDatabase db = this.getWritableDatabase();
+    
+    // Delete row
+    db.delete(TABLE_USERS, 
+            COLUMN_ID + " = ?",
+            new String[]{String.valueOf(userId)});
+    
+    // Close database connection
+    db.close();
+    
+    // Note: Returns number of rows affected if you want to check
+    // int rowsDeleted = db.delete(...);
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="example-section">
+                <div class="example-title">3. Raw SQL Examples</div>
+                
+                <div class="step">
+                    <div class="step-title">Create Table</div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>SQL Command</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-sql">-- Create users table with columns
+CREATE TABLE users (
+    _id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE
+);
+
+-- Add index for better performance on email searches
+CREATE INDEX idx_users_email ON users(email);
+
+-- Create another table with foreign key
+CREATE TABLE user_posts (
+    post_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER,
+    post_text TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY(user_id) REFERENCES users(_id)
+);</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Insert Record</div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>SQL Command</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-sql">-- Insert single record
+INSERT INTO users (name, email) 
+VALUES ('John Doe', 'john@example.com');
+
+-- Insert multiple records in single statement
+INSERT INTO users (name, email) 
+VALUES 
+    ('Jane Smith', 'jane@example.com'),
+    ('Bob Johnson', 'bob@example.com'),
+    ('Alice Williams', 'alice@example.com');
+
+-- Insert with default values
+INSERT INTO user_posts (user_id, post_text)
+VALUES (1, 'This is my first post!');</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Select Records</div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>SQL Command</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-sql">-- Get all users
+SELECT * FROM users;
+
+-- Get specific columns
+SELECT name, email FROM users;
+
+-- Get user by ID
+SELECT * FROM users WHERE _id = 1;
+
+-- Get users with name starting with 'J'
+SELECT * FROM users WHERE name LIKE 'J%';
+
+-- Get users with complex conditions
+SELECT * FROM users 
+WHERE name LIKE 'J%' 
+AND email LIKE '%@example.com'
+ORDER BY name ASC
+LIMIT 10;
+
+-- Join users with their posts
+SELECT users.name, user_posts.post_text, user_posts.created_at
+FROM users
+INNER JOIN user_posts ON users._id = user_posts.user_id
+ORDER BY user_posts.created_at DESC;</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Update Record</div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>SQL Command</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-sql">-- Update single user
+UPDATE users 
+SET name = 'John Smith', email = 'john.smith@example.com'
+WHERE _id = 1;
+
+-- Update multiple records
+UPDATE users 
+SET name = 'Unknown'
+WHERE email NOT LIKE '%@example.com';
+
+-- Update with subquery
+UPDATE user_posts
+SET post_text = 'Edited: ' || post_text
+WHERE user_id IN (SELECT _id FROM users WHERE name LIKE 'J%');</code></pre>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-title">Delete Record</div>
+                    <div class="code-container">
+                        <div class="code-header">
+                            <span>SQL Command</span>
+                            <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                        </div>
+                        <pre class="line-numbers"><code class="language-sql">-- Delete specific user
+DELETE FROM users WHERE _id = 1;
+
+-- Delete with condition
+DELETE FROM users WHERE email IS NULL;
+
+-- Delete all records (be careful!)
+DELETE FROM users;
+
+-- Delete with join
+DELETE FROM user_posts
+WHERE user_id IN (SELECT _id FROM users WHERE name LIKE 'Test%');</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PrismJS Core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.min.js"></script>
+    <!-- PrismJS Java Language -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-java.min.js"></script>
+    <!-- PrismJS SQL Language -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/components/prism-sql.min.js"></script>
+    <!-- PrismJS Line Numbers -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/line-numbers/prism-line-numbers.min.js"></script>
+    <!-- PrismJS Copy to Clipboard -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+
+    <script>
+        const methods = [
+             {
+                name: "insert",
+                params: [
+                    {name: "table", type: "String", desc: "The table to insert into"},
+                    {name: "nullColumnHack", type: "String", desc: "Optional; may be null"},
+                    {name: "values", type: "ContentValues", desc: "Key-value map of column names and values"}
+                ]
+            },
+            {
+                name: "update",
+                params: [
+                    {name: "table", type: "String", desc: "The table to update"},
+                    {name: "values", type: "ContentValues", desc: "Key-value map of columns and values"},
+                    {name: "whereClause", type: "String", desc: "WHERE clause"},
+                    {name: "whereArgs", type: "String[]", desc: "Arguments for WHERE clause"}
+                ]
+            },
+            {
+                name: "delete",
+                params: [
+                    {name: "table", type: "String", desc: "The table to delete from"},
+                    {name: "whereClause", type: "String", desc: "WHERE clause"},
+                    {name: "whereArgs", type: "String[]", desc: "Arguments for WHERE clause"}
+                ]
+            },
+            {
+                name: "execSQL",
+                params: [
+                    {name: "sql", type: "String", desc: "SQL statement to execute"},
+                    {name: "bindArgs", type: "Object[]", desc: "Arguments to bind (optional)"}
+                ]
+            },
+            {
+                name: "rawQuery",
+                params: [
+                    {name: "sql", type: "String", desc: "SQL query"},
+                    {name: "selectionArgs", type: "String[]", desc: "Arguments to bind to the query"}
+                ]
+            },
+           
+          
+            {
+                name: "isOpen",
+                params: [],
+                return: "boolean"
+            },
+            {
+                name: "close",
+                params: []
+            },
+            {
+                name: "getVersion",
+                params: [],
+                return: "int"
+            },
+            {
+                name: "setVersion",
+                params: [
+                    {name: "version", type: "int", desc: "The new database version"}
+                ]
+            }
+        ];
+
+        function renderMethods(filter = '') {
+            const container = document.getElementById('methods-container');
+            container.innerHTML = '';
+            
+            methods.forEach(method => {
+                if (filter && !method.name.toLowerCase().includes(filter.toLowerCase())) {
+                    return;
+                }
+                
+                const methodNode = document.createElement('div');
+                methodNode.className = 'method-node';
+                
+                let html = `<div class="method-name">${method.name}()`;
+                if (method.return) {
+                    html += ` <span class="param-type">→ ${method.return}</span>`;
+                }
+                html += `</div>`;
+                
+                if (method.params.length > 0) {
+                    html += '<div class="method-params">';
+                    method.params.forEach(param => {
+                        html += `<div><span class="param-name">${param.name}</span>: ` +
+                                `<span class="param-type">${param.type}</span>` +
+                                (param.desc ? `<br><span class="param-desc">${param.desc}</span>` : '') +
+                                `</div>`;
+                    });
+                    html += '</div>';
+                } else {
+                    html += '<div class="method-params">No parameters</div>';
+                }
+                
+                methodNode.innerHTML = html;
+                container.appendChild(methodNode);
+            });
+        }
+
+        // Initial render
+        renderMethods();
+
+        // Search functionality
+        document.getElementById('search').addEventListener('input', (e) => {
+            renderMethods(e.target.value);
+            
+            // Highlight matching text
+            const searchTerm = e.target.value.toLowerCase();
+            if (searchTerm) {
+                document.querySelectorAll('.method-name').forEach(el => {
+                    const text = el.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        el.classList.add('highlight');
+                    } else {
+                        el.classList.remove('highlight');
+                    }
+                });
+            } else {
+                document.querySelectorAll('.highlight').forEach(el => {
+                    el.classList.remove('highlight');
+                });
+            }
+        });
+
+        // Copy code function
+        function copyCode(button) {
+            const codeBlock = button.parentElement.nextElementSibling;
+            const range = document.createRange();
+            range.selectNode(codeBlock);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            
+            // Change button text temporarily
+            button.textContent = 'Copied!';
+            setTimeout(() => {
+                button.textContent = 'Copy';
+            }, 2000);
+        }
+
+        // Initialize Prism for any dynamically added code blocks
+        document.addEventListener('DOMContentLoaded', function() {
+            Prism.highlightAll();
+        });
+    </script>
+</body>
+</html>
